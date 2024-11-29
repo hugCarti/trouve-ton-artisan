@@ -3,9 +3,11 @@
     <section class='row'>
         <figure class='card-body p-5' *ngFor='let data of datas' [routerLink]="['/artisanForm', data.id]">
             <h3 class='card-title mb-3'>{{ data.name }}</h3>
-            <img class='stars' src='assets/etoile.png' alt='5etoiles'*ngFor='let i of [].constructor(5); let index = index'
-                [ngClass]="{'stars-fill': index < data.note}"
-            >
+            <div class="stars">
+                <div *ngFor="let star of [].constructor(5); let index = index" class="star" 
+                    [ngStyle]="{'background': getStarBackground(index, data.note)}">
+                </div>
+            </div>
             <p class='card-text mt-3'>{{ data.specialty }}</p>
             <p class='card-text'>{{ data.location }}</p>
         </figure>

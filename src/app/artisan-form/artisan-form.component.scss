@@ -3,17 +3,29 @@ figure {
     border-radius: 2rem;
     background-color: #f1f8fc;
 
-    h3 {
+    h2 {
         color: #00497c;
     }
 
-    img {
-        width: 1.2rem;
+    .stars {
+        display: flex;
+        gap: 2px;
+
+        .star {
+            width: 24px;
+            height: 24px;
+            clip-path: polygon(
+                50% 0%, 61% 35%, 98% 35%, 
+                68% 57%, 79% 91%, 50% 70%, 
+                21% 91%, 32% 57%, 2% 35%, 
+                39% 35%
+            ); /* Forme étoile */
+        }
     }
 
     p {
         color: #384050;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 }
 
