@@ -1,0 +1,46 @@
+
+@media (min-width: 960px) {
+    figure {
+        width: 20rem;
+    }
+}
+
+article {
+    ul {
+        list-style: none;
+
+        h2 {
+            color: #00497c;
+        }
+
+        li {
+            font-size: x-large;
+        }
+    }
+}
+
+section {
+    gap: 3rem;
+
+    figure {
+        cursor: pointer;
+        border-radius: 2rem;
+        background-color: #f1f8fc;
+
+        h3 {
+            color: #00497c;
+        }
+
+        img {
+            width: 1.2rem;
+        }
+
+        p {
+            color: #384050;
+        }
+    }
+}
+
+.txtNoResult {
+    font-size: 2.5rem;
+}

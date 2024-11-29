@@ -1,0 +1,13 @@
+
+<main class='container text-center mt-5'>
+    <section class='row'>
+        <figure class='card-body p-5' *ngFor='let data of datas' [routerLink]="['/artisanForm', data.id]">
+            <h3 class='card-title mb-3'>{{ data.name }}</h3>
+            <img class='stars' src='assets/etoile.png' alt='5etoiles'*ngFor='let i of [].constructor(5); let index = index'
+                [ngClass]="{'stars-fill': index < data.note}"
+            >
+            <p class='card-text mt-3'>{{ data.specialty }}</p>
+            <p class='card-text'>{{ data.location }}</p>
+        </figure>
+    </section>
+</main>

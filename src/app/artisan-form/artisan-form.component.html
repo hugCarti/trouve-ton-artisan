@@ -1,0 +1,23 @@
+
+<main class='container text-start mt-5'>
+    <figure class='card-body p-5'>
+        <h3 class='card-title mb-3'>{{ dataId.name }}</h3>
+        <img class='stars' src='assets/etoile.png' alt='5etoiles'*ngFor='let i of [].constructor(5); let index = index'
+            [ngClass]="{'stars-fill': index < dataId.note}"
+        >
+        <p class='card-text mt-3'>{{ dataId.specialty }}</p>
+        <p class='card-text'>{{ dataId.location }}</p>
+        <p class='card-text'>{{ dataId.about }}</p>
+        <form #f="ngForm" action="mailto:{{ dataId.email}}" (ngSubmit)="onSubmit(f.value)" novalidate>
+            <label class='form-label mx-3 mt-3' >Nom</label>
+            <input class='form-control form-control-lg' type='text' placeholder='jesus christ' name="nom" ngModel>
+
+            <label class='form-label mx-3 mt-3' for='exampleFormControlTextarea1' >Objet</label>
+            <input class='form-control form-control-lg' type='text' placeholder='objet' name="objet" ngModel>
+
+            <label class='form-label mx-3 mt-3' for='exampleFormControlTextarea1' >Message</label>
+            <textarea class='form-control form-control-lg pb-5' placeholder='message' cols="5" name="message" ngModel></textarea>
+            <button class="btn btn-info mt-4" type="submit">envoyer</button>
+        </form>
+    </figure>
+</main>
