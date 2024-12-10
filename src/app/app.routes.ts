@@ -10,6 +10,10 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'artisan',
+        component: ArtisanComponent
+    },
+    {
         path: 'artisan/:category',
         component: ArtisanComponent
     },

@@ -2,19 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { DatasService } from '../service/datas.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FilterByNamePipe } from '../filter-by-name.pipe';
+import { FormsModule } from '@angular/forms';
+import { FilterService } from '../service/filter.service';
 
 @Component({
   selector: 'app-artisan',
-  imports: [ CommonModule, RouterModule ],
+  imports: [ CommonModule, RouterModule, FilterByNamePipe, FormsModule ],
   templateUrl: './artisan.component.html',
   styleUrl: './artisan.component.scss'
 })
 export class ArtisanComponent implements OnInit {
 
-  datas: any;
-  category: string | null = null;
+	datas: any;
+	filterOrder:string = '';
+  	category: string='';
 
-  getStarBackground(index: number, note: number): string {
+  	getStarBackground(index: number, note: number): string {
 		const fullStars = Math.floor(note); // Nombre d'étoiles pleines
 		const fraction = note - fullStars; // Partie décimale de la note
 
@@ -30,17 +34,26 @@ export class ArtisanComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute,
-		private datasService: DatasService // Nom en camelCase pour respecter les conventions
+		private datasService: DatasService, // Nom en camelCase pour respecter les conventions
+		private filterService: FilterService
 	) {}
 
-  ngOnInit(): void {
-     // Écoute les changements du paramètre "category"
-     this.route.params.subscribe((params) => {
-      this.category = params['category']; // Récupère la catégorie depuis l'URL
+	ngOnInit(): void {
+		const allDatas = this.datasService.getDatas(); // Récupère toutes les données
+		this.datas = allDatas; // Assurez-vous que toutes les données sont chargées au départ
 
-      // Filtre les données par catégorie
-      const allDatas = this.datasService.getDatas();
-      this.datas = allDatas.filter((data: any) => data.category === this.category);
-    });
-  }
+		this.filterService.filterOrder$.subscribe((filterOrder) => {
+			this.filterOrder = filterOrder;
+			console.log("Received filterOrder:", this.filterOrder);
+		});
+
+		this.route.params.subscribe((params) => {
+			if (params['category']) {
+				this.category = params['category'];
+				this.datas = allDatas.filter((data: any) => data.category === this.category);
+			} else {
+				this.datas = allDatas; // Charge toutes les données si aucune catégorie n'est spécifiée
+			}
+		});
+	}
 }

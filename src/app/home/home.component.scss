@@ -5,17 +5,15 @@
     }
 }
 
-article {
-    ul {
-        list-style: none;
+article ol {
+    list-style-position: inside;
+    h2 {
+        color: #00497c;
+    }
 
-        h2 {
-            color: #00497c;
-        }
+    li {
+        font-size: x-large;
 
-        li {
-            font-size: x-large;
-        }
     }
 }
 

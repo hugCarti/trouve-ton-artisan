@@ -1,17 +1,17 @@
 
 <main class='container text-center mt-5'>
     <article>
-        <ul>
+        <ol>
             <h2 class='mb-5'>Comment trouver mon artisan ?</h2>
             <li>Choisir la catégorie d’artisanat dans le menu</li>
             <li>Choisir un artisan</li>
             <li>Le contacter via le formulaire de contact</li>
             <li class='mb-5'>Une réponse sera apportée sous 48h</li>
-        </ul>
+        </ol>
     </article>
 
-    <section class='row' *ngIf="(datas | filterByName:filterOrder).length > 0; else noResults">
-        <figure class='card-body p-5' *ngFor='let data of (datas | filterByName:filterOrder)' [routerLink]="['/artisanForm', data.id]">
+    <section class='row'>
+        <figure class='card-body p-5' *ngFor='let data of datas' [routerLink]="['/artisanForm', data.id]">
             <h3 class='card-title mb-3'>{{ data.name }}</h3>
             <div class="stars">
                 <div *ngFor="let star of [].constructor(5); let index = index" class="star" 
@@ -22,8 +22,4 @@
             <p class='card-text'>{{ data.location }}</p>
         </figure>
     </section>
-
-    <ng-template #noResults>
-        <p class="txtNoResult text-muted mt-5">Désolé, aucun résultat ne correspond à votre recherche.</p>
-    </ng-template>
 </main>

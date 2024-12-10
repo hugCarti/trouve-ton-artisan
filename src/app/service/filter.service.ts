@@ -10,6 +10,6 @@ export class FilterService {
   filterOrder$ = this.filterSubject.asObservable();
 
   setFilterOrder(filterOrder: string): void {
-    this.filterSubject.next(filterOrder);
+    this.filterSubject.next(filterOrder); // Met à jour la valeur
   }
 }

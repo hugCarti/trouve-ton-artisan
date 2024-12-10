@@ -221,7 +221,6 @@ export class DatasService {
   // Retourne un datas par son id
   getDataById(id: number) {
     const dataId = this.datas.find((data) => data.id === id);
-    console.log('Finding data by ID:', id, 'Result:', dataId); // Log pour vérifier
     return dataId;
   }
 
