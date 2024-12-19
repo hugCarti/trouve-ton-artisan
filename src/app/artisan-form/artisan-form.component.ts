@@ -47,11 +47,9 @@ export class ArtisanFormComponent implements OnInit {
   ngOnInit(): void {
     // Récupération de l'Id depuis l'URL
     const datasId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('datas Id from URL:', datasId); // Ajoutez ce log pour vérifier l'Id
 
     if (datasId) {
       this.dataId = this.datasService.getDataById(datasId);
-      console.log('Retrieved datasId:', this.dataId); // Log pour vérifier le produit
     }
   }
 

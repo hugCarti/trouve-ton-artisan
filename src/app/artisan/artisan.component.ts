@@ -44,7 +44,6 @@ export class ArtisanComponent implements OnInit {
 
 		this.filterService.filterOrder$.subscribe((filterOrder) => {
 			this.filterOrder = filterOrder;
-			console.log("Received filterOrder:", this.filterOrder);
 		});
 
 		this.route.params.subscribe((params) => {
