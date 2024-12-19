@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasService } from '../service/datas.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-artisan-form',
   standalone: true,
-  imports: [ RouterModule, CommonModule, FormsModule ],
+  imports: [ RouterModule, CommonModule, ReactiveFormsModule ],
   templateUrl: './artisan-form.component.html',
   styleUrl: './artisan-form.component.scss'
 })
 export class ArtisanFormComponent implements OnInit {
 
   dataId: any;
+  envoieForm: FormGroup;
 
   getStarBackground(index: number, note: number): string {
-  
+
 		const fullStars = Math.floor(note); // Nombre d'étoiles pleines
 		const fraction = note - fullStars; // Partie décimale de la note
 
@@ -30,32 +32,17 @@ export class ArtisanFormComponent implements OnInit {
 		}
 	}
 
-  formData = {
-    name: '',
-    email: '',
-    message: '',
-  };
-
-  sendEmail(form: any) {
-    if (!this.dataId || !this.dataId.email) {
-      console.error("L'adresse email du destinataire est introuvable !");
-      return;
-    }
-
-    const recipientEmail = this.dataId.email; // Email du professionnel
-    const subject = encodeURIComponent(`Form Submission from ${this.formData.name}`);
-    const body = encodeURIComponent(
-      `Nom: ${this.formData.name}\nEmail: ${this.formData.email}\nMessage:\n${this.formData.message}`
-    );
-
-    const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink; // Redirection vers le client mail
-  }
-
   constructor(
     private route: ActivatedRoute,
-    private datasService: DatasService
-  ) {}
+    private datasService: DatasService,
+    private fb: FormBuilder
+  ) {
+    this.envoieForm = this.fb.group({
+      input1: ['', Validators.required],
+      input2: ['', Validators.required],
+      textarea: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     // Récupération de l'Id depuis l'URL
@@ -65,6 +52,14 @@ export class ArtisanFormComponent implements OnInit {
     if (datasId) {
       this.dataId = this.datasService.getDataById(datasId);
       console.log('Retrieved datasId:', this.dataId); // Log pour vérifier le produit
+    }
+  }
+
+  onSubmit(): void {
+    if (this.envoieForm.valid) {
+      alert('Mail envoyé');
+    } else {
+      alert('Veuillez remplir tous les champs.');
     }
   }
 }

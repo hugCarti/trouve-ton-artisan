@@ -10,24 +10,36 @@
         <p class='card-text mt-3'>{{ dataId.specialty }}</p>
         <p class='card-text'>{{ dataId.location }}</p>
         <p class='card-text'>{{ dataId.about }}</p>
-        <form #emailForm="ngForm" (ngSubmit)="sendEmail(emailForm)">
+        <form [formGroup]="envoieForm" (ngSubmit)="onSubmit()">
             <div>
-                <label class='form-label mx-3 mt-3' for="name">Nom</label>
-                <input class='form-control form-control-lg' id="name" type='text' placeholder='Jesus Christ'
-                    [(ngModel)]="formData.name" name="name" required />
+                <label class='form-label mx-3 mt-3' for="input1">Nom</label>
+                <input
+                    class='form-control form-control-lg'
+                    type='text'
+                    placeholder='Jisus Christ'
+                    formControlName="input1"
+                    required />
             </div>
             <div>
-                <label class='form-label mx-3 mt-3' for="email">Email</label>
-                <input class='form-control form-control-lg' type='text' placeholder='objet' id="email" 
-                    [(ngModel)]="formData.email" name="email" required />
+                <label class='form-label mx-3 mt-3' for="input2">Objet</label>
+                <input
+                    class='form-control form-control-lg'
+                    type='text'
+                    placeholder='exemple@domain.com'
+                    formControlName="input2"
+                    required />
             </div>
             <div>
-                <label class='form-label mx-3 mt-3' for="message">Message</label>
-                <textarea class='form-control form-control-lg pb-5' placeholder='message' cols='5' 
-                    [(ngModel)]="formData.message" name="message" required></textarea>
+                <label class='form-label mx-3 mt-3' for="textarea">Message</label>
+                <textarea
+                    class='form-control form-control-lg pb-5'
+                    placeholder='message'
+                    cols='5'
+                    formControlName="textarea"
+                    required></textarea>
             </div>
             <button class="btn btn-info my-5" type="submit">Envoyer</button>
-        </form>
+          </form>
         <p>Site Web:  <a href="{{ dataId.website }}" class='card-text'>{{ dataId.website }}</a></p>
     </figure>
 </main>
