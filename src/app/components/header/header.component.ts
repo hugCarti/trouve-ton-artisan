@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { FilterService } from '../service/filter.service';
+import { FilterService } from '../../service/filter.service';
 
 @Component({
   selector: 'app-header',

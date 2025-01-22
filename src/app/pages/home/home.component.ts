@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DatasService } from '../service/datas.service';
+import { DatasService } from '../../service/datas.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
 

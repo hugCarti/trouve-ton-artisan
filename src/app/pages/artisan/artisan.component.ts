@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DatasService } from '../service/datas.service';
+import { DatasService } from '../../service/datas.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FilterByNamePipe } from '../filter-by-name.pipe';
+import { FilterByNamePipe } from '../../pipes/filter-by-name.pipe';
 import { FormsModule } from '@angular/forms';
-import { FilterService } from '../service/filter.service';
+import { FilterService } from '../../service/filter.service';
 
 @Component({
   selector: 'app-artisan',
