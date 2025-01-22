@@ -1,19 +1,22 @@
 
 <main class='container text-center mt-5'>
-    <section class='row' *ngIf="(datas | filterByName:filterOrder).length > 0; else noResults">
-        <figure class='card-body p-5' *ngFor='let data of (datas | filterByName:filterOrder)' [routerLink]="['/artisanForm', data.id]">
-            <h3 class='card-title mb-3'>{{ data.name }}</h3>
-            <div class="stars">
-                <div *ngFor="let star of [].constructor(5); let index = index" class="star" 
-                    [ngStyle]="{'background': getStarBackground(index, data.note)}">
-                </div>
-            </div>
-            <p class='card-text mt-3'>{{ data.specialty }}</p>
-            <p class='card-text'>{{ data.location }}</p>
-        </figure>
-    </section>
-
-    <ng-template #noResults>
-        <p class="txtNoResult text-muted mt-5">Désolé, aucun résultat ne correspond à votre recherche.</p>
-    </ng-template>
+    @if ((datas | filterByName:filterOrder).length > 0) {
+        <section class='row'>
+            @for (data of (datas | filterByName:filterOrder); track data.id) {
+                <figure class='card-body p-5' [routerLink]="['/artisanForm', data.id]">
+                    <h3 class='card-title mb-3'>{{ data.name }}</h3>
+                    <div class="stars">
+                        <div 
+                            *ngFor="let star of [].constructor(5); let index = index" class="star" 
+                            [ngStyle]="{'background': getStarBackground(index, data.note)}">
+                        </div>
+                    </div>
+                    <p class='card-text mt-3'>{{ data.specialty }}</p>
+                    <p class='card-text'>{{ data.location }}</p>
+                </figure>
+            }
+        </section>
+    } @else {
+        <p class="txtNoResult text-muted mt-5">Désolé, aucun artisan ne correspond à votre recherche.</p>
+    }
 </main>

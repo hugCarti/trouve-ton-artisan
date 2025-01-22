@@ -11,15 +11,17 @@
     </article>
 
     <section class='row'>
-        <figure class='card-body p-5' *ngFor='let data of datas' [routerLink]="['/artisanForm', data.id]">
-            <h3 class='card-title mb-3'>{{ data.name }}</h3>
-            <div class="stars">
-                <div *ngFor="let star of [].constructor(5); let index = index" class="star" 
-                    [ngStyle]="{'background': getStarBackground(index, data.note)}">
+        @for (data of datas; track data.id) {
+            <figure class='card-body p-5' [routerLink]="['/artisanForm', data.id]">
+                <h3 class='card-title mb-3'>{{ data.name }}</h3>
+                <div class="stars">
+                    <div *ngFor="let star of [].constructor(5); let index = index" class="star" 
+                        [ngStyle]="{'background': getStarBackground(index, data.note)}">
+                    </div>
                 </div>
-            </div>
-            <p class='card-text mt-3'>{{ data.specialty }}</p>
-            <p class='card-text'>{{ data.location }}</p>
-        </figure>
+                <p class='card-text mt-3'>{{ data.specialty }}</p>
+                <p class='card-text'>{{ data.location }}</p>
+            </figure>
+        }
     </section>
 </main>
