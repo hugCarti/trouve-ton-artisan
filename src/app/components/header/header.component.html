@@ -4,16 +4,16 @@
       <a class="navbar-brand" [routerLink]="['/']"><img src="assets/Logo.png" alt="logo"></a>
       <input class="form-control mx-auto" [routerLink]="['/artisan']" [(ngModel)]="filterOrder" (ngModelChange)="onFilterChange() "type="search" placeholder="rechercher">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <a [routerLink]="['/artisan', 'Bâtiment']" class="nav-link">Bâtiment</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <a [routerLink]="['/artisan', 'Services']" class="nav-link">Services</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <a [routerLink]="['/artisan', 'Fabrication']" class="nav-link">Fabrication</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-1">
           <a [routerLink]="['/artisan', 'Alimentation']" class="nav-link">Alimentation</a>
         </li>
       </ul>
